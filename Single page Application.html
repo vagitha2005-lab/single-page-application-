@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Demonstration & Documentation - SPA</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      background-color: #f8f9fa;
+      color: #333;
+      text-align: center;
+    }
+
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 15px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      padding: 20px;
+      transition: opacity 0.3s ease;
+      min-height: 250px;
+    }
+
+    footer {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🚀 Project Demonstration & Documentation</h1>
+    <nav>
+      <a href="#overview" onclick="loadPage('overview')">Overview</a>
+      <a href="#modules" onclick="loadPage('modules')">Modules</a>
+      <a href="#results" onclick="loadPage('results')">Results</a>
+      <a href="#documentation" onclick="loadPage('documentation')">Documentation</a>
+    </nav>
+  </header>
+
+  <section id="content">
+    <!-- Dynamic content will load here -->
+  </section>
+
+  <footer>
+    © 2025 Smart Project SPA | All Rights Reserved
+  </footer>
+
+  <script>
+    // Load content based on selected section
+    window.onload = () => {
+      const page = window.location.hash.replace("#", "") || "overview";
+      loadPage(page);
+    };
+
+    function loadPage(page) {
+      const content = document.getElementById("content");
+      content.style.opacity = 0;
+
+      setTimeout(() => {
+        switch (page) {
+          case "overview":
+            content.innerHTML = `
+              <div class="card">
+                <h2>📘 Project Overview</h2>
+                <p>This project demonstrates a <b>Single Page Application (SPA)</b> that showcases 
+                project demonstration and documentation dynamically using HTML, CSS, and JavaScript.</p>
+                <p>It eliminates page reloads and provides a seamless presentation experience.</p>
+                <button onclick="loadPage('modules')">Next ➜ Modules</button>
+              </div>
+            `;
+            break;
+
+          case "modules":
+            content.innerHTML = `
+              <div class="card">
+                <h2>🧩 Project Modules</h2>
+                <ul>
+                  <li><b>Module 1:</b> User Interface Design</li>
+                  <li><b>Module 2:</b> Data Handling (Dynamic Content)</li>
+                  <li><b>Module 3:</b> Documentation & Export</li>
+                  <li><b>Module 4:</b> Deployment Setup</li>
+                </ul>
+                <button onclick="loadPage('results')">Next ➜ Results</button>
+              </div>
+            `;
+            break;
+
+          case "results":
+            content.innerHTML = `
+              <div class="card">
+                <h2>📊 Project Results</h2>
+                <p>Performance improved by <b>40%</b> due to single-page architecture.</p>
+                <p>Dynamic content loading reduced load time to <b>1.2 seconds</b>.</p>
+                <p>Responsive design ensures smooth use across devices.</p>
+                <button onclick="loadPage('documentation')">Next ➜ Documentation</button>
+              </div>
+            `;
+            break;
+
+          case "documentation":
+            content.innerHTML = `
+              <div class="card">
+                <h2>📝 Project Documentation</h2>
+                <p>This section provides downloadable project documentation and a live demo link.</p>
+                <button onclick="downloadDoc()">📥 Download Documentation</button>
+                <button onclick="alert('Deployed on Netlify (Example)')">🌐 View Live Demo</button>
+              </div>
+            `;
+            break;
+
+          default:
+            content.innerHTML = <h2>404 - Page Not Found</h2>;
+        }
+
+        content.style.opacity = 1;
+      }, 200);
+    }
+
+    // Documentation Download Simulation
+    function downloadDoc() {
+      const blob = new Blob(
+        ["Project Demonstration & Documentation\n\nCreated using Single Page Application in HTML, CSS, and JS."],
+        { type: "text/plain" }
+      );
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "Project_Documentation.txt";
+      link.click();
+    }
+  </script>
+</body>
+</html>
